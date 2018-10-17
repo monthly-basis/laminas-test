@@ -1,6 +1,7 @@
 <?php
 namespace LeoGalleguillos\Test;
 
+use Exception;
 use Zend\Db\Adapter\Adapter;
 use PHPUnit\Framework\TestCase;
 
@@ -12,6 +13,26 @@ class TableTestCase extends TestCase
      * @var string
      */
     protected $sqlDirectory = __DIR__ . '/../sql';
+
+    protected function setUp()
+    {
+        $this->adapter = $this->getAdapter();
+    }
+
+    protected function createTable(
+        string $tableName
+    ) {
+        if (preg_match('/\W/', $tableName)) {
+            throw new Exception('Invalid table name.');
+        }
+
+        $sqlPath = $_SERVER['PWD']
+                 . '/sql/leogalle_test/'
+                 . $tableName
+                 . '/create.sql';
+        $sql = file_get_contents($sqlPath);
+        $this->adapter->query($sql)->execute();
+    }
 
     protected function getAdapter(): Adapter
     {
