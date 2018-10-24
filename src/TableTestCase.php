@@ -27,7 +27,7 @@ class TableTestCase extends TestCase
         }
 
         $sqlPath = $_SERVER['PWD']
-                 . '/sql/leogalle_test/'
+                 . '/sql/test/'
                  . $tableName
                  . '/create.sql';
         $sql = file_get_contents($sqlPath);
@@ -42,7 +42,7 @@ class TableTestCase extends TestCase
         }
 
         $sqlPath = $_SERVER['PWD']
-                 . '/sql/leogalle_test/'
+                 . '/sql/test/'
                  . $tableName
                  . '/drop.sql';
         $sql = file_get_contents($sqlPath);
