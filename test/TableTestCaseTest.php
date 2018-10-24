@@ -24,8 +24,12 @@ class TableTestCaseTest extends TestCase
 
     public function testCreateTable()
     {
+        $class = new ReflectionClass(TableTestCase::class);
+        $method = $class->getMethod('createTable');
+        $method->setAccessible(true);
+
         try {
-            $this->tableTestCase->createTable('invalid table name');
+            $method->invoke($this->tableTestCase, 'invalid table name');
             $this->fail();
         } catch (Exception $exception) {
             $this->assertSame(

@@ -19,7 +19,7 @@ class TableTestCase extends TestCase
         $this->adapter = $this->getAdapter();
     }
 
-    public function createTable(
+    protected function createTable(
         string $tableName
     ) {
         if (preg_match('/\W/', $tableName)) {
@@ -34,7 +34,7 @@ class TableTestCase extends TestCase
         $this->adapter->query($sql)->execute();
     }
 
-    public function dropTable(
+    protected function dropTable(
         string $tableName
     ) {
         if (preg_match('/\W/', $tableName)) {
