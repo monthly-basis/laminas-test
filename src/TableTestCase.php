@@ -19,7 +19,7 @@ class TableTestCase extends TestCase
         $this->adapter = $this->getAdapter();
     }
 
-    protected function createTable(
+    public function createTable(
         string $tableName
     ) {
         if (preg_match('/\W/', $tableName)) {
@@ -30,6 +30,21 @@ class TableTestCase extends TestCase
                  . '/sql/leogalle_test/'
                  . $tableName
                  . '/create.sql';
+        $sql = file_get_contents($sqlPath);
+        $this->adapter->query($sql)->execute();
+    }
+
+    public function dropTable(
+        string $tableName
+    ) {
+        if (preg_match('/\W/', $tableName)) {
+            throw new Exception('Invalid table name.');
+        }
+
+        $sqlPath = $_SERVER['PWD']
+                 . '/sql/leogalle_test/'
+                 . $tableName
+                 . '/drop.sql';
         $sql = file_get_contents($sqlPath);
         $this->adapter->query($sql)->execute();
     }

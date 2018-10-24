@@ -1,6 +1,7 @@
 <?php
 namespace LeoGalleguillos\TestTest;
 
+use Exception;
 use LeoGalleguillos\Test\TableTestCase;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
@@ -19,6 +20,19 @@ class TableTestCaseTest extends TestCase
             TableTestCase::class,
             $this->tableTestCase
         );
+    }
+
+    public function testCreateTable()
+    {
+        try {
+            $this->tableTestCase->createTable('invalid table name');
+            $this->fail();
+        } catch (Exception $exception) {
+            $this->assertSame(
+                'Invalid table name.',
+                $exception->getMessage()
+            );
+        }
     }
 
     public function testGetAdapter()
