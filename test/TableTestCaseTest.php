@@ -37,6 +37,27 @@ class TableTestCaseTest extends TestCase
                 $exception->getMessage()
             );
         }
+
+        $method->invoke($this->tableTestCase, 'table_1');
+    }
+
+    public function testDropTable()
+    {
+        $class = new ReflectionClass(TableTestCase::class);
+        $method = $class->getMethod('dropTable');
+        $method->setAccessible(true);
+
+        try {
+            $method->invoke($this->tableTestCase, 'invalid table name');
+            $this->fail();
+        } catch (Exception $exception) {
+            $this->assertSame(
+                'Invalid table name.',
+                $exception->getMessage()
+            );
+        }
+
+        $method->invoke($this->tableTestCase, 'table_1');
     }
 
     public function testGetAdapter()

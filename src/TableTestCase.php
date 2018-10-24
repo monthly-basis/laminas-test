@@ -31,7 +31,7 @@ class TableTestCase extends TestCase
                  . $tableName
                  . '/create.sql';
         $sql = file_get_contents($sqlPath);
-        $this->adapter->query($sql)->execute();
+        $this->getAdapter()->query($sql)->execute();
     }
 
     protected function dropTable(
@@ -46,7 +46,7 @@ class TableTestCase extends TestCase
                  . $tableName
                  . '/drop.sql';
         $sql = file_get_contents($sqlPath);
-        $this->adapter->query($sql)->execute();
+        $this->getAdapter()->query($sql)->execute();
     }
 
     protected function getAdapter(): Adapter
