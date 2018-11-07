@@ -7,16 +7,6 @@ use Zend\Mvc\Application;
 
 class ModuleTestCase Extends TestCase
 {
-    protected function setUp()
-    {
-        $this->module = new static::Module();
-    }
-
-    public function testInstance()
-    {
-        $this->assertInstanceOf(Module::class, $this->module);
-    }
-
     public function testGetConfig()
     {
         $applicationConfig = include($_SERVER['PWD'] . '/config/application.config.php');
