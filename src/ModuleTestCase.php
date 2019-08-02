@@ -1,7 +1,6 @@
 <?php
 namespace LeoGalleguillos\Test;
 
-use LeoGalleguillos\ProjectManagement\Module;
 use PHPUnit\Framework\TestCase;
 use Zend\Mvc\Application;
 
