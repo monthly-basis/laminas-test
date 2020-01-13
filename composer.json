@@ -2,8 +2,8 @@
     "name": "leo-galleguillos/test",
     "license": "MIT",
     "require": {
-        "zendframework/zend-test": "^3.1",
-        "zendframework/zend-db": "^2.9"
+        "laminas/laminas-test": "^3.1",
+        "laminas/laminas-db": "^2.9"
     },
     "autoload": {
         "psr-4": {
