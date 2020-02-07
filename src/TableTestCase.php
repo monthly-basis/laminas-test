@@ -34,6 +34,13 @@ class TableTestCase extends TestCase
         $this->getAdapter()->query($sql)->execute();
     }
 
+    protected function dropAndCreateTable(
+        string $tableName
+    ) {
+        $this->dropTable($tableName);
+        $this->createTable($tableName);
+    }
+
     protected function dropTable(
         string $tableName
     ) {
