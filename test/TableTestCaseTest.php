@@ -14,14 +14,6 @@ class TableTestCaseTest extends TestCase
         $this->tableTestCase = new TableTestCase();
     }
 
-    public function testInstance()
-    {
-        $this->assertInstanceOf(
-            TableTestCase::class,
-            $this->tableTestCase
-        );
-    }
-
     public function testCreateTable()
     {
         $class = new ReflectionClass(TableTestCase::class);
