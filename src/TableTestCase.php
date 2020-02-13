@@ -62,7 +62,7 @@ class TableTestCase extends TestCase
             return $this->adapter;
         }
 
-        $this->adapter = new Adapter($this->getConfigArray());
+        $this->instantiateAdapter();
         return $this->adapter;
     }
 
@@ -72,13 +72,20 @@ class TableTestCase extends TestCase
         return $configArray['db']['adapters']['test'];
     }
 
+    protected function instantiateAdapter()
+    {
+        if (!isset($this->adapter)) {
+            $this->adapter = new Adapter($this->getConfigArray());
+        }
+    }
+
     protected function setForeignKeyChecks0()
     {
         $sql = file_get_contents(
             $this->sqlDirectory . '/SetForeignKeyChecks0.sql'
         );
 
-        $result = $this->adapter->query($sql)->execute();
+        $result = $this->getAdapter()->query($sql)->execute();
     }
 
     protected function setForeignKeyChecks1()
@@ -87,6 +94,6 @@ class TableTestCase extends TestCase
             $this->sqlDirectory . '/SetForeignKeyChecks1.sql'
         );
 
-        $result = $this->adapter->query($sql)->execute();
+        $result = $this->getAdapter()->query($sql)->execute();
     }
 }
