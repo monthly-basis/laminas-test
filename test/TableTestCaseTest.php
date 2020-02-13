@@ -16,6 +16,12 @@ class TableTestCaseTest extends TestCase
 
     public function testCreateTable()
     {
+        // Drop table before creating it.
+        $class = new ReflectionClass(TableTestCase::class);
+        $method = $class->getMethod('dropTable');
+        $method->setAccessible(true);
+        $method->invoke($this->tableTestCase, 'table_1');
+
         $class = new ReflectionClass(TableTestCase::class);
         $method = $class->getMethod('createTable');
         $method->setAccessible(true);
@@ -31,6 +37,23 @@ class TableTestCaseTest extends TestCase
         }
 
         $method->invoke($this->tableTestCase, 'table_1');
+    }
+
+    public function testCreateTables()
+    {
+        // Drop tables before creating them.
+        $class  = new ReflectionClass(TableTestCase::class);
+        $method = $class->getMethod('dropTables');
+        $method->setAccessible(true);
+        $method->invoke($this->tableTestCase, ['table_1', 'table_2']);
+
+        $class  = new ReflectionClass(TableTestCase::class);
+        $method = $class->getMethod('createTables');
+        $method->setAccessible(true);
+
+        $this->assertTrue(
+            $method->invoke($this->tableTestCase, ['table_1', 'table_2'])
+        );
     }
 
     public function testDropTable()
@@ -50,6 +73,17 @@ class TableTestCaseTest extends TestCase
         }
 
         $method->invoke($this->tableTestCase, 'table_1');
+    }
+
+    public function testDropTables()
+    {
+        $class  = new ReflectionClass(TableTestCase::class);
+        $method = $class->getMethod('dropTables');
+        $method->setAccessible(true);
+
+        $this->assertTrue(
+            $method->invoke($this->tableTestCase, ['table_1', 'table_2'])
+        );
     }
 
     public function testGetAdapter()
