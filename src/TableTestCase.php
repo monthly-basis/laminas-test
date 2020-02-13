@@ -32,6 +32,15 @@ class TableTestCase extends TestCase
         $this->getAdapter()->query($sql)->execute();
     }
 
+    protected function createTables(array $tableNames): bool
+    {
+        foreach ($tableNames as $tableName) {
+            $this->createTable($tableName);
+        }
+
+        return true;
+    }
+
     protected function dropAndCreateTable(
         string $tableName
     ) {
@@ -52,6 +61,15 @@ class TableTestCase extends TestCase
                  . '/drop.sql';
         $sql = file_get_contents($sqlPath);
         $this->getAdapter()->query($sql)->execute();
+    }
+
+    protected function dropTables(array $tableNames): bool
+    {
+        foreach ($tableNames as $tableName) {
+            $this->dropTable($tableName);
+        }
+
+        return true;
     }
 
     protected function getAdapter(): Adapter
