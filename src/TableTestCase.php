@@ -41,11 +41,21 @@ class TableTestCase extends TestCase
         return true;
     }
 
-    protected function dropAndCreateTable(
-        string $tableName
-    ) {
+    protected function dropAndCreateTable(string $tableName): bool
+    {
         $this->dropTable($tableName);
         $this->createTable($tableName);
+
+        return true;
+    }
+
+    protected function dropAndCreateTables(array $tableNames): bool
+    {
+        foreach ($tableNames as $tableName) {
+            $this->dropAndCreateTable($tableName);
+        }
+
+        return true;
     }
 
     protected function dropTable(
