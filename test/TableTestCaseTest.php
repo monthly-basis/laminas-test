@@ -78,4 +78,34 @@ class TableTestCaseTest extends TestCase
         $this->assertArrayHasKey('username', $array);
         $this->assertArrayHasKey('password', $array);
     }
+
+    public function testSetForeignKeyChecks()
+    {
+        $class = new ReflectionClass(TableTestCase::class);
+        $method = $class->getMethod('setForeignKeyChecks');
+        $method->setAccessible(true);
+
+        $this->assertTrue(
+            $method->invoke($this->tableTestCase, 0)
+        );
+
+        $this->assertTrue(
+            $method->invoke($this->tableTestCase, 1)
+        );
+
+        // Setting foreign key checks to 1 a second time should still return true.
+        $this->assertTrue(
+            $method->invoke($this->tableTestCase, 1)
+        );
+
+        try {
+            $method->invoke($this->tableTestCase, 2);
+            $this->fail();
+        } catch (Exception $exception) {
+            $this->assertSame(
+                'Invalid foreign key checks value.',
+                $exception->getMessage()
+            );
+        }
+    }
 }

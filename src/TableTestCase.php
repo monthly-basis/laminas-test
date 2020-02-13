@@ -79,6 +79,22 @@ class TableTestCase extends TestCase
         }
     }
 
+    protected function setForeignKeyChecks(int $zeroOrOne): bool
+    {
+        switch ($zeroOrOne) {
+            case 0:
+                $this->setForeignKeyChecks0();
+                break;
+            case 1:
+                $this->setForeignKeyChecks1();
+                break;
+            default:
+                throw new Exception('Invalid foreign key checks value.');
+        }
+
+        return true;
+    }
+
     protected function setForeignKeyChecks0()
     {
         $sql = file_get_contents(
