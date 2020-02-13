@@ -56,6 +56,28 @@ class TableTestCaseTest extends TestCase
         );
     }
 
+    public function testDropAndCreateTable()
+    {
+        $class = new ReflectionClass(TableTestCase::class);
+        $method = $class->getMethod('dropAndCreateTable');
+        $method->setAccessible(true);
+
+        $this->assertTrue(
+            $method->invoke($this->tableTestCase, 'table_1')
+        );
+    }
+
+    public function testDropAndCreateTables()
+    {
+        $class = new ReflectionClass(TableTestCase::class);
+        $method = $class->getMethod('dropAndCreateTables');
+        $method->setAccessible(true);
+
+        $this->assertTrue(
+            $method->invoke($this->tableTestCase, ['table_1', 'table_2'])
+        );
+    }
+
     public function testDropTable()
     {
         $class = new ReflectionClass(TableTestCase::class);
