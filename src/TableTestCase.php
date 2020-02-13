@@ -7,17 +7,15 @@ use PHPUnit\Framework\TestCase;
 
 class TableTestCase extends TestCase
 {
+    /**
+     * @var Adapter
+     */
     protected $adapter;
 
     /**
      * @var string
      */
     protected $sqlDirectory = __DIR__ . '/../sql';
-
-    protected function setUp()
-    {
-        $this->adapter = $this->getAdapter();
-    }
 
     protected function createTable(
         string $tableName
