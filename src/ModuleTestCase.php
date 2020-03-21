@@ -1,8 +1,8 @@
 <?php
 namespace LeoGalleguillos\Test;
 
+use Laminas\Mvc\Application;
 use PHPUnit\Framework\TestCase;
-use Zend\Mvc\Application;
 
 class ModuleTestCase Extends TestCase
 {

@@ -2,10 +2,10 @@
 namespace LeoGalleguillos\TestTest;
 
 use Exception;
+use Laminas\Db\Adapter\Adapter;
 use LeoGalleguillos\Test\TableTestCase;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
-use Zend\Db\Adapter\Adapter;
 
 class TableTestCaseTest extends TestCase
 {
