@@ -12,14 +12,22 @@ class Result extends TestCase
         $resultMock,
         array $array
     ) {
-        $resultMock
-            ->method('current')
-            ->will(
-                call_user_func_array(
-                    [$this, 'onConsecutiveCalls'],
-                    $array
-                )
-            );
+        if (empty($array)) {
+            $resultMock
+                ->method('current')
+                ->willReturn(
+                    false
+                );
+        } else {
+            $resultMock
+                ->method('current')
+                ->will(
+                    call_user_func_array(
+                        [$this, 'onConsecutiveCalls'],
+                        $array
+                    )
+                );
+        }
 
         $keys = range(0, count($array) - 1);
         $resultMock

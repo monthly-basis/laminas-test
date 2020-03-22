@@ -12,6 +12,24 @@ class ResultTest extends TestCase
         $this->result = new TestHydrator\Result();
     }
 
+    public function test_hydrate_empty()
+    {
+        $resultMock = $this->createMock(
+            Result::class
+        );
+        $this->result->hydrate(
+            $resultMock,
+            []
+        );
+        $this->assertFalse(
+            $resultMock->current()
+        );
+        $this->assertSame(
+            [],
+            iterator_to_array($resultMock)
+        );
+    }
+
     public function test_hydrate_letters()
     {
         $resultMock = $this->createMock(
