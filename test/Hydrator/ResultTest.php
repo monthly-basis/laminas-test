@@ -21,6 +21,10 @@ class ResultTest extends TestCase
             $resultMock,
             []
         );
+        $this->assertSame(
+            0,
+            count($resultMock)
+        );
         $this->assertFalse(
             $resultMock->current()
         );
@@ -38,6 +42,10 @@ class ResultTest extends TestCase
         $this->result->hydrate(
             $resultMock,
             ['a', 'b', 'c',]
+        );
+        $this->assertSame(
+            3,
+            count($resultMock)
         );
         $this->assertSame(
             [
@@ -60,6 +68,10 @@ class ResultTest extends TestCase
                 ['user_id' => 1, 'username' => 'Foo'],
                 ['user_id' => 2, 'username' => 'Boo'],
             ]
+        );
+        $this->assertSame(
+            2,
+            count($resultMock)
         );
         $this->assertSame(
             [

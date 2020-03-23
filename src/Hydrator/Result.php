@@ -12,6 +12,14 @@ class Result extends TestCase
         $resultMock,
         array $array
     ) {
+        // count
+        $resultMock
+            ->method('count')
+            ->willReturn(
+                count($array)
+            );
+
+        // current
         if (empty($array)) {
             $resultMock
                 ->method('current')
@@ -29,6 +37,7 @@ class Result extends TestCase
                 );
         }
 
+        // key
         $keys = range(0, count($array) - 1);
         $resultMock
             ->method('key')
@@ -39,6 +48,7 @@ class Result extends TestCase
                 )
             );
 
+        // valid
         $valids = array_fill(0, count($array), true);
         $valids[] = false;
         $resultMock
