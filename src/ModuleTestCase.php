@@ -44,10 +44,24 @@ class ModuleTestCase Extends TestCase
         $serviceManager    = $this->application->getServiceManager();
 
         foreach ($serviceConfig['factories'] as $class => $value) {
-            $this->assertInstanceOf(
-                $class,
-                $serviceManager->get($class)
-            );
+            if (substr($class, 0, 14) === 'table-gateway-') {
+                $tableGateway = $serviceManager->get($class);
+                $tableName    = substr($class, 14);
+
+                $this->assertInstanceOf(
+                    \Laminas\Db\TableGateway\TableGateway::class,
+                    $tableGateway
+                );
+                $this->assertSame(
+                    $tableName,
+                    $tableGateway->getTable()
+                );
+            } else {
+                $this->assertInstanceOf(
+                    $class,
+                    $serviceManager->get($class)
+                );
+            }
         }
     }
 }
