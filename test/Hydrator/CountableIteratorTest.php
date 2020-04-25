@@ -1,7 +1,6 @@
 <?php
 namespace LeoGalleguillos\TestTest\Hydrator;
 
-
 use Laminas\Db\Adapter\Driver\Pdo\Result;
 use Laminas\Db\ResultSet\ResultSet;
 use LeoGalleguillos\Test\Hydrator as TestHydrator;

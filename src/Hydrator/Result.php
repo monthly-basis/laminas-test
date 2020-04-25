@@ -5,9 +5,19 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Hydrate a Result mock with data from an array.
+ *
+ * @deprecated Use TestHydrator\CountableIterator() instead
  */
 class Result extends TestCase
 {
+    public function __construct()
+    {
+        trigger_error(
+            '@deprecated Use TestHydrator\CountableIterator() instead',
+            E_USER_DEPRECATED
+        );
+    }
+
     public function hydrate(
         $resultMock,
         array $array
