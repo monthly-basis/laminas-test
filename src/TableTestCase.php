@@ -2,7 +2,7 @@
 namespace LeoGalleguillos\Test;
 
 use Exception;
-use Laminas\Db\Adapter\Adapter;
+use Laminas\Db as LaminasDb;
 use PHPUnit\Framework\TestCase;
 
 class TableTestCase extends TestCase
@@ -82,7 +82,7 @@ class TableTestCase extends TestCase
         return true;
     }
 
-    protected function getAdapter(): Adapter
+    protected function getAdapter(): LaminasDb\Adapter\Adapter
     {
         if (isset($this->adapter)) {
             return $this->adapter;
@@ -100,9 +100,7 @@ class TableTestCase extends TestCase
 
     protected function instantiateAdapter()
     {
-        if (!isset($this->adapter)) {
-            $this->adapter = new Adapter($this->getConfigArray());
-        }
+        $this->adapter = new LaminasDb\Adapter\Adapter($this->getConfigArray());
     }
 
     protected function setForeignKeyChecks(int $zeroOrOne): bool
