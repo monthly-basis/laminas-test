@@ -2,10 +2,11 @@
 namespace LeoGalleguillos\TestTest;
 
 use Exception;
-use Laminas\Db\Adapter\Adapter;
+use Laminas\Db as LaminasDb;
 use LeoGalleguillos\Test\TableTestCase;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
+use ReflectionProperty;
 
 class TableTestCaseTest extends TestCase
 {
@@ -117,7 +118,7 @@ class TableTestCaseTest extends TestCase
         $adapter = $method->invoke($this->tableTestCase);
 
         $this->assertInstanceOf(
-            Adapter::class,
+            LaminasDb\Adapter\Adapter::class,
             $adapter
         );
     }
@@ -133,6 +134,30 @@ class TableTestCaseTest extends TestCase
         $this->assertArrayHasKey('database', $array);
         $this->assertArrayHasKey('username', $array);
         $this->assertArrayHasKey('password', $array);
+    }
+
+    public function test_instantiateTableGateway()
+    {
+        $reflectionClass = new ReflectionClass(TableTestCase::class);
+        $reflectionMethod = $reflectionClass->getMethod('instantiateTableGateway');
+        $reflectionMethod->setAccessible(true);
+        $reflectionMethod->invoke($this->tableTestCase, 'table_name');
+
+        $reflectionProperty = new ReflectionProperty(
+            TableTestCase::class,
+            'tableGateways'
+        );
+        $reflectionProperty->setAccessible(true);
+        $tableGateway = $reflectionProperty->getValue($this->tableTestCase)['table_name'];
+
+        $this->assertInstanceOf(
+            LaminasDb\TableGateway\TableGateway::class,
+            $tableGateway
+        );
+        $this->assertSame(
+            'table_name',
+            $tableGateway->getTable()
+        );
     }
 
     public function testSetForeignKeyChecks()

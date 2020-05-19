@@ -13,6 +13,11 @@ class TableTestCase extends TestCase
     protected $adapter;
 
     /**
+     * @var LaminasDb\TableGateway\TableGateway[]
+     */
+    protected $tableGateways = [];
+
+    /**
      * @var string
      */
     protected $sqlDirectory = __DIR__ . '/../sql';
@@ -101,6 +106,14 @@ class TableTestCase extends TestCase
     protected function instantiateAdapter()
     {
         $this->adapter = new LaminasDb\Adapter\Adapter($this->getConfigArray());
+    }
+
+    protected function instantiateTableGateway(string $tableName)
+    {
+        $this->tableGateways[$tableName] = new LaminasDb\TableGateway\TableGateway(
+            $tableName,
+            $this->getAdapter()
+        );
     }
 
     protected function setForeignKeyChecks(int $zeroOrOne): bool
