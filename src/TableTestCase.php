@@ -103,6 +103,17 @@ class TableTestCase extends TestCase
         return $configArray['db']['adapters']['test'];
     }
 
+    protected function getTableGateway(
+        string $tableName
+    ): LaminasDb\TableGateway\TableGateway {
+        if (isset($this->tableGateways[$tableName])) {
+            return $this->tableGateways[$tableName];
+        }
+
+        $this->instantiateTableGateway($tableName);
+        return $this->tableGateways[$tableName];
+    }
+
     protected function instantiateAdapter()
     {
         $this->adapter = new LaminasDb\Adapter\Adapter($this->getConfigArray());

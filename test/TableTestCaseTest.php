@@ -136,6 +136,33 @@ class TableTestCaseTest extends TestCase
         $this->assertArrayHasKey('password', $array);
     }
 
+    public function test_getTableGateway()
+    {
+        $reflectionClass = new ReflectionClass(TableTestCase::class);
+        $reflectionMethod = $reflectionClass->getMethod('getTableGateway');
+        $reflectionMethod->setAccessible(true);
+
+        $tableGateway1 = $reflectionMethod->invoke($this->tableTestCase, 'table_name_1');
+        $tableGateway2 = $reflectionMethod->invoke($this->tableTestCase, 'table_name_2');
+
+        $this->assertInstanceOf(
+            LaminasDb\TableGateway\TableGateway::class,
+            $tableGateway1
+        );
+        $this->assertInstanceOf(
+            LaminasDb\TableGateway\TableGateway::class,
+            $tableGateway2
+        );
+        $this->assertSame(
+            'table_name_1',
+            $tableGateway1->getTable()
+        );
+        $this->assertSame(
+            'table_name_2',
+            $tableGateway2->getTable()
+        );
+    }
+
     public function test_instantiateTableGateway()
     {
         $reflectionClass = new ReflectionClass(TableTestCase::class);
