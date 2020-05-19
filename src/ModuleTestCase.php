@@ -44,9 +44,9 @@ class ModuleTestCase Extends TestCase
         $serviceManager    = $this->application->getServiceManager();
 
         foreach ($serviceConfig['factories'] as $class => $value) {
-            if (substr($class, 0, 14) === 'table-gateway-') {
+            if (substr($class, 0, 39) === 'laminas-db-table-gateway-table-gateway-') {
                 $tableGateway = $serviceManager->get($class);
-                $tableName    = substr($class, 14);
+                $tableName    = substr($class, 39);
 
                 $this->assertInstanceOf(
                     \Laminas\Db\TableGateway\TableGateway::class,
