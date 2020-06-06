@@ -1,6 +1,7 @@
 <?php
 namespace LeoGalleguillos\Test;
 
+use Laminas\Db as LaminasDb;
 use Laminas\Mvc\Application;
 use PHPUnit\Framework\TestCase;
 
@@ -44,7 +45,12 @@ class ModuleTestCase Extends TestCase
         $serviceManager    = $this->application->getServiceManager();
 
         foreach ($serviceConfig['factories'] as $class => $value) {
-            if (substr($class, 0, 39) === 'laminas-db-table-gateway-table-gateway-') {
+            if ($class == 'laminas-db-sql-sql') {
+                $this->assertInstanceOf(
+                    LaminasDb\Sql\Sql::class,
+                    $serviceManager->get($class)
+                );
+            } elseif (substr($class, 0, 39) === 'laminas-db-table-gateway-table-gateway-') {
                 $tableGateway = $serviceManager->get($class);
                 $tableName    = substr($class, 39);
 
