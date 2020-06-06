@@ -10,7 +10,7 @@ use ReflectionProperty;
 
 class TableTestCaseTest extends TestCase
 {
-    protected function setup()
+    protected function setUp(): void
     {
         $this->tableTestCase = new TableTestCase();
     }
