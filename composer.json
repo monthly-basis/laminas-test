@@ -1,5 +1,5 @@
 {
-    "name": "leo-galleguillos/test",
+    "name": "monthly-basis/laminas-test",
     "license": "MIT",
     "require": {
         "laminas/laminas-db": "^2.9",
@@ -7,8 +7,8 @@
     },
     "autoload": {
         "psr-4": {
-            "LeoGalleguillos\\Test\\": "src/",
-            "LeoGalleguillos\\TestTest\\": "test/"
+            "MonthlyBasis\\LaminasTest\\": "src/",
+            "MonthlyBasis\\LaminasTestTest\\": "test/"
         }
     }
 }
