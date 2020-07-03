@@ -1,5 +1,5 @@
 <?php
-namespace LeoGalleguillos\Test;
+namespace MonthlyBasis\LaminasTest;
 
 use Laminas\Db as LaminasDb;
 use Laminas\Mvc\Application;

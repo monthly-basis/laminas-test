@@ -1,5 +1,5 @@
 <?php
-namespace LeoGalleguillos\Test;
+namespace MonthlyBasis\LaminasTest;
 
 use Exception;
 use Laminas\Db as LaminasDb;

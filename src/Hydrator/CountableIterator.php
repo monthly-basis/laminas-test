@@ -1,5 +1,5 @@
 <?php
-namespace LeoGalleguillos\Test\Hydrator;
+namespace MonthlyBasis\LaminasTest\Hydrator;
 
 use Countable;
 use Exception;

@@ -1,5 +1,5 @@
 <?php
-namespace LeoGalleguillos\Test;
+namespace MonthlyBasis\LaminasTest;
 
 class Module
 {

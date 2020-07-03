@@ -1,9 +1,9 @@
 <?php
-namespace LeoGalleguillos\TestTest;
+namespace MonthlyBasis\LaminasTestTest;
 
 use Exception;
 use Laminas\Db as LaminasDb;
-use LeoGalleguillos\Test\TableTestCase;
+use MonthlyBasis\LaminasTest\TableTestCase;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 use ReflectionProperty;

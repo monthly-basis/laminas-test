@@ -1,9 +1,9 @@
 <?php
-namespace LeoGalleguillos\TestTest\Hydrator;
+namespace MonthlyBasis\LaminasTestTest\Hydrator;
 
 use Laminas\Db\Adapter\Driver\Pdo\Result;
 use Laminas\Db\ResultSet\ResultSet;
-use LeoGalleguillos\Test\Hydrator as TestHydrator;
+use MonthlyBasis\LaminasTest\Hydrator as TestHydrator;
 use PHPUnit\Framework\TestCase;
 
 class CountableIteratorTest extends TestCase
