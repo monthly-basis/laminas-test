@@ -4,6 +4,7 @@ namespace MonthlyBasis\LaminasTest\Hydrator;
 use Countable;
 use Exception;
 use Iterator;
+use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -13,7 +14,7 @@ use PHPUnit\Framework\TestCase;
 class CountableIterator extends TestCase
 {
     public function hydrate(
-        $countableIteratorMock,
+        Stub $countableIteratorMock,
         array $array
     ) {
         if ((!is_subclass_of($countableIteratorMock, Countable::class))
