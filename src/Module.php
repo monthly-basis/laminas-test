@@ -1,6 +1,8 @@
 <?php
 namespace MonthlyBasis\LaminasTest;
 
+use MonthlyBasis\LaminasTest\Model\Service as LaminasTestService;
+
 class Module
 {
     public function getConfig()
@@ -19,6 +21,9 @@ class Module
     {
         return [
             'factories' => [
+                LaminasTestService\Foo::class => function ($sm) {
+                    return new LaminasTestService\Foo();
+                },
             ],
         ];
     }
