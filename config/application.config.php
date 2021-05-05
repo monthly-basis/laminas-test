@@ -2,7 +2,9 @@
 
 return [
     'modules' => [
-        'Zend\Db',
+        'Laminas\Db',
+        'Laminas\Router',
+        'MonthlyBasis\LaminasTest',
     ],
     // These are various options for the listeners attached to the ModuleManager
     'module_listener_options' => array(
