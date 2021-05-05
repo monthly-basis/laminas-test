@@ -5,18 +5,21 @@ use Laminas\Db as LaminasDb;
 use Laminas\Mvc\Application;
 use PHPUnit\Framework\TestCase;
 
-class ModuleTestCase Extends TestCase
+class ModuleTestCase extends TestCase
 {
     public function testGetConfig()
     {
+        if (!method_exists($this->module, 'getConfig')) {
+			$this->markTestSkipped(
+              'Method ::getConfig() does not exist.'
+            );
+        }
+
         $applicationConfig = include($_SERVER['PWD'] . '/config/application.config.php');
         $this->application = Application::init($applicationConfig);
-        $serviceConfig     = $this->module->getServiceConfig();
         $serviceManager    = $this->application->getServiceManager();
         $viewHelperManager = $serviceManager->get('ViewHelperManager');
         $config            = $this->module->getConfig();
-
-        $this->assertTrue(is_array($config));
 
         if (isset($config['view_helpers']['aliases'])) {
             foreach ($config['view_helpers']['aliases'] as $alias => $class) {
@@ -39,10 +42,16 @@ class ModuleTestCase Extends TestCase
 
     public function testGetServiceConfig()
     {
+        if (!method_exists($this->module, 'getServiceConfig')) {
+			$this->markTestSkipped(
+              'Method ::getServiceConfig() does not exist.'
+            );
+        }
+
         $applicationConfig = include($_SERVER['PWD'] . '/config/application.config.php');
         $this->application = Application::init($applicationConfig);
-        $serviceConfig     = $this->module->getServiceConfig();
         $serviceManager    = $this->application->getServiceManager();
+        $serviceConfig     = $this->module->getServiceConfig();
 
         foreach ($serviceConfig['factories'] as $class => $value) {
             if ($class == 'laminas-db-sql-sql') {
