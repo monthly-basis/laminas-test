@@ -13,7 +13,7 @@ class ModuleTestCaseTest extends TestCase
         $this->moduleTestCase = new ModuleTestCase();
     }
 
-    public function test_testGetConfig_configMethodDoesNotExist_TestIsSkipped()
+    public function test_testGetConfig_configMethodDoesNotExist_testIsSkipped()
     {
         $this->moduleTestCase->module = (
             new class {}
@@ -22,7 +22,7 @@ class ModuleTestCaseTest extends TestCase
         $this->moduleTestCase->testGetConfig();
     }
 
-    public function test_testGetConfig_configReturnsArray_TestRuns()
+    public function test_testGetConfig_configReturnsArray_testRuns()
     {
         $this->moduleTestCase->module = (new class
         {
@@ -43,7 +43,7 @@ class ModuleTestCaseTest extends TestCase
         $this->moduleTestCase->testGetConfig();
     }
 
-    public function test_testGetServiceConfig_getServiceConfigMethodDoesNotExist_TestIsSkipped()
+    public function test_testGetServiceConfig_getServiceConfigMethodDoesNotExist_testIsSkipped()
     {
         $this->moduleTestCase->module = (
             new class {}
@@ -52,7 +52,7 @@ class ModuleTestCaseTest extends TestCase
         $this->moduleTestCase->testGetServiceConfig();
     }
 
-    public function test_testGetServiceConfig_getServiceConfigMethodReturnsArray_TestRuns()
+    public function test_testGetServiceConfig_getServiceConfigMethodReturnsArray_testRuns()
     {
         $this->moduleTestCase->module = (new class
         {
