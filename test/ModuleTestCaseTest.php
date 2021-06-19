@@ -1,6 +1,7 @@
 <?php
 namespace MonthlyBasis\LaminasTestTest;
 
+use MonthlyBasis\LaminasTest\Model\Command as LaminasTestCommand;
 use MonthlyBasis\LaminasTest\Model\Service as LaminasTestService;
 use MonthlyBasis\LaminasTest\ModuleTestCase;
 use MonthlyBasis\LaminasTest\View\Helper as LaminasTestViewHelper;
@@ -33,6 +34,32 @@ class ModuleTestCaseTest extends TestCase
                         'factories' => [
                             LaminasTestViewHelper\Foo::class => function ($sm) {
                                 return new LaminasTestViewHelper\Foo();
+                            },
+                        ],
+                    ],
+                ];
+			}
+        });
+
+        $this->moduleTestCase->testGetConfig();
+    }
+
+    public function test_testGetConfig_configReturnsArrayContainsLaminasCli_testRuns()
+    {
+        $this->moduleTestCase->module = (new class
+        {
+            public function getConfig()
+            {
+                return [
+                    'laminas-cli' => [
+                        'commands' => [
+                            'foo' => LaminasTestCommand\Foo::class,
+                        ],
+                    ],
+                    'service_manager' => [
+                        'factories' => [
+                            LaminasTestCommand\Foo::class => function ($sm) {
+                                return new LaminasTestCommand\Foo();
                             },
                         ],
                     ],
