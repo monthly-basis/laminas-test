@@ -7,6 +7,9 @@ use PHPUnit\Framework\TestCase;
 
 class ModuleTestCase extends TestCase
 {
+    /**
+     * @runInSeparateProcess
+     */
     public function testGetConfig()
     {
         if (!method_exists($this->module, 'getConfig')) {
@@ -58,6 +61,9 @@ class ModuleTestCase extends TestCase
         }
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function testGetServiceConfig()
     {
         if (!method_exists($this->module, 'getServiceConfig')) {
