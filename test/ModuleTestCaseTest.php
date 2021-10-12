@@ -1,6 +1,7 @@
 <?php
 namespace MonthlyBasis\LaminasTestTest;
 
+use MonthlyBasis\LaminasTest\Controller as LaminasTestController;
 use MonthlyBasis\LaminasTest\Model\Command as LaminasTestCommand;
 use MonthlyBasis\LaminasTest\Model\Service as LaminasTestService;
 use MonthlyBasis\LaminasTest\ModuleTestCase;
@@ -19,6 +20,27 @@ class ModuleTestCaseTest extends TestCase
         $this->moduleTestCase->module = (
             new class {}
         );
+
+        $this->moduleTestCase->testGetConfig();
+    }
+
+    public function test_testGetConfig_configReturnsArrayWithControllersFactories_testRuns()
+    {
+        $this->moduleTestCase->module = (new class
+        {
+            public function getConfig()
+            {
+                return [
+                    'controllers' => [
+                        'factories' => [
+                            LaminasTestController\Foo::class => function ($sm) {
+                                return new LaminasTestController\Foo();
+                            }
+                        ],
+                    ],
+                ];
+			}
+        });
 
         $this->moduleTestCase->testGetConfig();
     }

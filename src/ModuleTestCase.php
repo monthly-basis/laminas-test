@@ -24,6 +24,20 @@ class ModuleTestCase extends TestCase
         $viewHelperManager = $serviceManager->get('ViewHelperManager');
         $config            = $this->module->getConfig();
 
+        if (isset($config['controllers']['factories'])) {
+            $controllerManager = $serviceManager->get('ControllerManager');
+            foreach ($config['controllers']['factories'] as $class => $closure) {
+                $this->assertInstanceOf(
+                    $class,
+                    $controllerManager->get($class)
+                );
+                $this->assertInstanceOf(
+                    $class,
+                    $closure($serviceManager)
+                );
+            }
+        }
+
         if (isset($config['laminas-cli']['commands'])) {
             foreach ($config['laminas-cli']['commands'] as $command => $class) {
                 $this->assertInstanceOf(
