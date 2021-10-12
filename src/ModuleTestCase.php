@@ -48,10 +48,14 @@ class ModuleTestCase extends TestCase
         }
 
         if (isset($config['service_manager']['factories'])) {
-            foreach ($config['service_manager']['factories'] as $class => $value) {
+            foreach ($config['service_manager']['factories'] as $class => $closure) {
                 $this->assertInstanceOf(
                     $class,
                     $serviceManager->get($class)
+                );
+                $this->assertInstanceOf(
+                    $class,
+                    $closure($serviceManager)
                 );
             }
         }
@@ -66,10 +70,14 @@ class ModuleTestCase extends TestCase
         }
 
         if (isset($config['view_helpers']['factories'])) {
-            foreach ($config['view_helpers']['factories'] as $class => $value) {
+            foreach ($config['view_helpers']['factories'] as $class => $closure) {
                 $this->assertInstanceOf(
                     $class,
                     $viewHelperManager->get($class)
+                );
+                $this->assertInstanceOf(
+                    $class,
+                    $closure($serviceManager)
                 );
             }
         }
