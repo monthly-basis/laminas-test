@@ -94,7 +94,7 @@ class ModuleTestCase extends TestCase
             );
         }
 
-        $applicationConfig = include(__DIR__ . '/../config/application.config.php');
+        $applicationConfig = include($_SERVER['PWD'] . '/config/application.config.php');
         $this->application = Application::init($applicationConfig);
         $serviceManager    = $this->application->getServiceManager();
         $controllerManager = $serviceManager->get('ControllerManager');
