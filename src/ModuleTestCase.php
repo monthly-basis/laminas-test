@@ -13,7 +13,7 @@ class ModuleTestCase extends TestCase
     public function testGetConfig()
     {
         if (!method_exists($this->module, 'getConfig')) {
-			$this->markTestSkipped(
+            $this->markTestSkipped(
               'Method ::getConfig() does not exist.'
             );
         }
@@ -89,7 +89,7 @@ class ModuleTestCase extends TestCase
     public function test_getControllerConfig()
     {
         if (!method_exists($this->module, 'getControllerConfig')) {
-			$this->markTestSkipped(
+            $this->markTestSkipped(
               'Method ::getControllerConfig() does not exist.'
             );
         }
@@ -115,7 +115,7 @@ class ModuleTestCase extends TestCase
     public function testGetServiceConfig()
     {
         if (!method_exists($this->module, 'getServiceConfig')) {
-			$this->markTestSkipped(
+            $this->markTestSkipped(
               'Method ::getServiceConfig() does not exist.'
             );
         }
