@@ -92,6 +92,34 @@ class ModuleTestCaseTest extends TestCase
         $this->moduleTestCase->testGetConfig();
     }
 
+    public function test_testGetControllerConfig_getControllerConfigMethodDoesNotExist_testIsSkipped()
+    {
+        $this->moduleTestCase->module = (
+            new class {}
+        );
+
+        $this->moduleTestCase->test_getControllerConfig();
+    }
+
+    public function test_testGetControllerConfig_getControllerConfigMethodReturnsArray_testRuns()
+    {
+        $this->moduleTestCase->module = (new class
+        {
+            public function getControllerConfig()
+            {
+                return [
+                    'factories' => [
+                        LaminasTestController\Foo::class => function ($sm) {
+                            return new LaminasTestController\Foo();
+                        },
+                    ],
+                ];
+            }
+        });
+
+        $this->moduleTestCase->test_getControllerConfig();
+    }
+
     public function test_testGetServiceConfig_getServiceConfigMethodDoesNotExist_testIsSkipped()
     {
         $this->moduleTestCase->module = (

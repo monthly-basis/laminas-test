@@ -86,6 +86,32 @@ class ModuleTestCase extends TestCase
     /**
      * @runInSeparateProcess
      */
+    public function test_getControllerConfig()
+    {
+        if (!method_exists($this->module, 'getControllerConfig')) {
+			$this->markTestSkipped(
+              'Method ::getControllerConfig() does not exist.'
+            );
+        }
+
+        $applicationConfig = include(__DIR__ . '/../config/application.config.php');
+        $this->application = Application::init($applicationConfig);
+        $serviceManager    = $this->application->getServiceManager();
+        $controllerManager = $serviceManager->get('ControllerManager');
+
+        $controllerConfig  = $this->module->getControllerConfig();
+
+        foreach ($controllerConfig['factories'] as $class => $value) {
+            $this->assertInstanceOf(
+                $class,
+                $controllerManager->get($class)
+            );
+        }
+    }
+
+    /**
+     * @runInSeparateProcess
+     */
     public function testGetServiceConfig()
     {
         if (!method_exists($this->module, 'getServiceConfig')) {
