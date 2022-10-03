@@ -7,22 +7,14 @@ use PHPUnit\Framework\TestCase;
 
 class TableTestCase extends TestCase
 {
-    /**
-     * @var Adapter
-     */
-    protected $adapter;
-
+    protected LaminasDb\Adapter\Adapter $adapter;
     protected LaminasDb\Sql\Sql $sql;
+    protected string $sqlDirectory = __DIR__ . '/../sql';
 
     /**
      * @var LaminasDb\TableGateway\TableGateway[]
      */
-    protected $tableGateways = [];
-
-    /**
-     * @var string
-     */
-    protected $sqlDirectory = __DIR__ . '/../sql';
+    protected array $tableGateways = [];
 
     protected function createTable(
         string $tableName
