@@ -136,6 +136,20 @@ class TableTestCaseTest extends TestCase
         $this->assertArrayHasKey('password', $array);
     }
 
+    public function test_getSql()
+    {
+        $class = new ReflectionClass(TableTestCase::class);
+        $method = $class->getMethod('getSql');
+        $method->setAccessible(true);
+
+        $sql = $method->invoke($this->tableTestCase);
+
+        $this->assertInstanceOf(
+            LaminasDb\Sql\Sql::class,
+            $sql
+        );
+    }
+
     public function test_getTableGateway()
     {
         $reflectionClass = new ReflectionClass(TableTestCase::class);

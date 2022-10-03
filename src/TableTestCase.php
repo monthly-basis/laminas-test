@@ -12,6 +12,8 @@ class TableTestCase extends TestCase
      */
     protected $adapter;
 
+    protected LaminasDb\Sql\Sql $sql;
+
     /**
      * @var LaminasDb\TableGateway\TableGateway[]
      */
@@ -103,6 +105,16 @@ class TableTestCase extends TestCase
         return $configArray['db']['adapters']['test'];
     }
 
+    protected function getSql(): LaminasDb\Sql\Sql
+    {
+        if (isset($this->sql)) {
+            return $this->sql;
+        }
+
+        $this->instantiateSql();
+        return $this->sql;
+    }
+
     protected function getTableGateway(
         string $tableName
     ): LaminasDb\TableGateway\TableGateway {
@@ -117,6 +129,11 @@ class TableTestCase extends TestCase
     protected function instantiateAdapter()
     {
         $this->adapter = new LaminasDb\Adapter\Adapter($this->getConfigArray());
+    }
+
+    protected function instantiateSql()
+    {
+        $this->sql = new LaminasDb\Sql\Sql($this->getAdapter());
     }
 
     protected function instantiateTableGateway(string $tableName)
