@@ -12,7 +12,7 @@ class ModuleTestCaseTest extends TestCase
 {
     protected function setUp(): void
     {
-        $this->moduleTestCase = new ModuleTestCase();
+        $this->moduleTestCase = new ModuleTestCase('ModuleTestCase');
     }
 
     public function test_testGetConfig_configMethodDoesNotExist_testIsSkipped()

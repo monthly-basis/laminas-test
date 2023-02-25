@@ -10,7 +10,7 @@ class CountableIteratorTest extends TestCase
 {
     protected function setUp(): void
     {
-        $this->result = new TestHydrator\CountableIterator();
+        $this->result = new TestHydrator\CountableIterator('CountableIterator');
     }
 
     public function test_hydrate_empty()

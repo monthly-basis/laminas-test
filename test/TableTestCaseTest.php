@@ -12,7 +12,7 @@ class TableTestCaseTest extends TestCase
 {
     protected function setUp(): void
     {
-        $this->tableTestCase = new TableTestCase();
+        $this->tableTestCase = new TableTestCase('TableTestCase');
     }
 
     public function testCreateTable()
