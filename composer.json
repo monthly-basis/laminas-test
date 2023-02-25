@@ -3,8 +3,7 @@
     "license": "MIT",
     "require": {
         "laminas/laminas-db": "^2.9",
-        "laminas/laminas-test": "^4.0",
-        "phpunit/phpunit": "^10.0"
+        "laminas/laminas-test": "^4.0"
     },
     "autoload": {
         "psr-4": {
