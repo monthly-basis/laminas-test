@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
  * Hydrate an object which implements both \Countable and \Iterator
  * with data from an array.
  */
-class CountableIterator extends TestCase
+class CountableIterator
 {
     public function hydrate(
         Stub $countableIteratorMock,
@@ -41,7 +41,7 @@ class CountableIterator extends TestCase
                 ->method('current')
                 ->will(
                     call_user_func_array(
-                        [$this, 'onConsecutiveCalls'],
+                        [TestCase::class, 'onConsecutiveCalls'],
                         $array
                     )
                 );
@@ -53,7 +53,7 @@ class CountableIterator extends TestCase
             ->method('key')
             ->will(
                 call_user_func_array(
-                    [$this, 'onConsecutiveCalls'],
+                    [TestCase::class, 'onConsecutiveCalls'],
                     $keys
                 )
             );
@@ -65,7 +65,7 @@ class CountableIterator extends TestCase
             ->method('valid')
             ->will(
                 call_user_func_array(
-                    [$this, 'onConsecutiveCalls'],
+                    [TestCase::class, 'onConsecutiveCalls'],
                     $valids
                 )
             );
