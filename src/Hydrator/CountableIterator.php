@@ -10,6 +10,8 @@ use PHPUnit\Framework\TestCase;
 /**
  * Hydrate an object which implements both \Countable and \Iterator
  * with data from an array.
+ *
+ * @todo Should this method be static? If yes, then make it staic.
  */
 class CountableIterator
 {
