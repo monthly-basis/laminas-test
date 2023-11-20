@@ -24,6 +24,19 @@ class ModuleTestCaseTest extends TestCase
         $this->moduleTestCase->testGetConfig();
     }
 
+    public function test_testGetConfig_emptyArray_skipped()
+    {
+        $this->moduleTestCase->module = (new class
+        {
+            public function getConfig()
+            {
+                return [];
+            }
+        });
+
+        $this->moduleTestCase->testGetConfig();
+    }
+
     public function test_testGetConfig_configReturnsArrayWithControllersFactories_testRuns()
     {
         $this->moduleTestCase->module = (new class
@@ -39,7 +52,7 @@ class ModuleTestCaseTest extends TestCase
                         ],
                     ],
                 ];
-			}
+            }
         });
 
         $this->moduleTestCase->testGetConfig();
@@ -60,7 +73,7 @@ class ModuleTestCaseTest extends TestCase
                         ],
                     ],
                 ];
-			}
+            }
         });
 
         $this->moduleTestCase->testGetConfig();
@@ -86,7 +99,7 @@ class ModuleTestCaseTest extends TestCase
                         ],
                     ],
                 ];
-			}
+            }
         });
 
         $this->moduleTestCase->testGetConfig();
@@ -125,6 +138,19 @@ class ModuleTestCaseTest extends TestCase
         $this->moduleTestCase->module = (
             new class {}
         );
+
+        $this->moduleTestCase->testGetServiceConfig();
+    }
+
+    public function test_testGetServiceConfig_emptyArray_skipped()
+    {
+        $this->moduleTestCase->module = (new class
+        {
+            public function getServiceConfig()
+            {
+                return [];
+            }
+        });
 
         $this->moduleTestCase->testGetServiceConfig();
     }

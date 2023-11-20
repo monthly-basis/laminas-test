@@ -18,11 +18,18 @@ class ModuleTestCase extends TestCase
             );
         }
 
+        $config = $this->module->getConfig();
+
+        if ($config === []) {
+            $this->markTestSkipped(
+              'Method ::getConfig() returns empty array.'
+            );
+        }
+
         $applicationConfig = include($_SERVER['PWD'] . '/config/application.config.php');
         $this->application = Application::init($applicationConfig);
         $serviceManager    = $this->application->getServiceManager();
         $viewHelperManager = $serviceManager->get('ViewHelperManager');
-        $config            = $this->module->getConfig();
 
         if (isset($config['controllers']['factories'])) {
             $controllerManager = $serviceManager->get('ControllerManager');
@@ -120,10 +127,17 @@ class ModuleTestCase extends TestCase
             );
         }
 
+        $serviceConfig = $this->module->getServiceConfig();
+
+        if ($serviceConfig === []) {
+            $this->markTestSkipped(
+              'Method ::getServiceConfig() returns empty array.'
+            );
+        }
+
         $applicationConfig = include($_SERVER['PWD'] . '/config/application.config.php');
         $this->application = Application::init($applicationConfig);
         $serviceManager    = $this->application->getServiceManager();
-        $serviceConfig     = $this->module->getServiceConfig();
 
         foreach ($serviceConfig['factories'] as $class => $value) {
             if ($class == 'laminas-db-sql-sql') {
